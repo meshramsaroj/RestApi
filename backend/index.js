@@ -3,7 +3,11 @@ const fs = require("fs");
 const users = require("./MOCK_DATA.json");
 
 const app = express(); // this will create an instance of express and store it in the app variable. We can use this variable to set up our routes and start the server.
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
+
+app.get("/", (req, res) => {
+  res.send("API is running");
+});
 
 //Middleware :  plugins that can be used to modify the request and response objects. They can be used to add functionality to our application, such as parsing the request body, handling CORS, etc.
 app.use(express.urlencoded({ extended: true }));
