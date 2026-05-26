@@ -1,7 +1,14 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 // https://vite.dev/config/
 export default defineConfig({
+  // Proxy API requests to the backend server to fix CORS issues during development
+  server: {
+    proxy: {
+      "/api": "http://localhost:5000",
+      // '/api': 'https://restapi-fipo.onrender.com',
+    },
+  },
   plugins: [react()],
-})
+});
