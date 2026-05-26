@@ -9,13 +9,14 @@ const users = JSON.parse(fs.readFileSync("./MOCK_DATA.json", "utf-8"));
 const app = express(); // this will create an instance of express and store it in the app variable. We can use this variable to set up our routes and start the server.
 const PORT = process.env.PORT || 5000;
 
-app.get("/", (req, res) => {
-  res.send("API is running");
-});
+// app.get("/", (req, res) => {
+//   res.send("API is running");
+// });
 
 //Middleware :  plugins that can be used to modify the request and response objects. They can be used to add functionality to our application, such as parsing the request body, handling CORS, etc.
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); // to parse JSON request bodies
+app.use(express.static("dist")); // to serve static files from the public directory
 
 // Rest api endpoints
 app.get("/api/users", (req, res) => {
@@ -162,6 +163,8 @@ app
       return res.status(404).json({ message: "User not found" });
     }
   });
+
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening at http://localhost:${PORT}`);

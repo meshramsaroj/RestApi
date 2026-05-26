@@ -71,3 +71,5 @@ export default defineConfig([
   },
 ])
 ```
+
+API deployment server : https://dashboard.render.com/web/srv-d8akqrj7uimc73ah2ju0/deploys/dep-d8akuoe7r5hc73eham8g?r=2026-05-26%4007%3A43%3A33%7E2026-05-26%4007%3A45%3A56
