@@ -1,9 +1,13 @@
-const express = require("express");
-const fs = require("fs");
-const users = require("./MOCK_DATA.json");
+import express from "express";
+import fs from "fs";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const users = JSON.parse(fs.readFileSync("./MOCK_DATA.json", "utf-8"));
 
 const app = express(); // this will create an instance of express and store it in the app variable. We can use this variable to set up our routes and start the server.
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 5000;
 
 app.get("/", (req, res) => {
   res.send("API is running");
@@ -17,6 +21,11 @@ app.use(express.json()); // to parse JSON request bodies
 app.get("/api/users", (req, res) => {
   return res.json(users);
 });
+
+app.get("/api/ten-users", (req, res) => {
+  res.send({users: users.slice(0,10)});
+
+})
 
 app.get("/api/users/:id", (req, res) => {
   const { id } = req.params;
